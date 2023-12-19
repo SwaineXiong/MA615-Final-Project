@@ -1,7 +1,7 @@
 library(shiny)
 library(leaflet)
 library(ggplot2)
-
+library(DT)
 
 data1 <- data.frame(
   Year = c(2023, 2020, 2015, 2010, 2005, 2000, 1995, 1990, 1985, 1980, 1975, 1970, 1965, 1960, 1955),
@@ -181,14 +181,6 @@ shinyServer(function(input, output, session) {
   })
   
   output$populationcomparion<- renderPlot({
-    # country_data_list <- list(
-    #   Maldives = data1,
-    #   Mauritius = mauritius_data,
-    #   Seychelles = seychelles_data,
-    #   Comoros = comoros_data,
-    #   Madagascar = madagascar_data,
-    #   Sri_lanka = sri_lanka_data
-    # )
     selected_data <- reactive({
       lapply(input$countries, function(country) country_data_list[[country]])
     })
@@ -226,6 +218,11 @@ shinyServer(function(input, output, session) {
       labs(title = "Population by Division", x = "Division", y = "Population")+
       theme_minimal()
   })
+  
+  output$myTable <- renderDT({
+    datatable(localities_data)
+  })
+  
   })
     
   

@@ -1,6 +1,7 @@
 library(shiny)
 library(leaflet)
 library(ggplot2)
+library(DT)
 
 shinyUI(fluidPage(
   navlistPanel(
@@ -70,7 +71,7 @@ The Maldives also faces significant environmental challenges, particularly from 
   "Key Demographics",
   tabPanel("Population",HTML("<br/> Population in Maldives from 1955 to 2023. <br/> <br/>"), sliderInput("yearRange", "Select Year Range:",
                                      min = 1955, max = 2023, value = c(1955, 2023)),plotOutput("populationHist")),
-  tabPanel("Population in each city",HTML("<br/> Population in each city. <br/> <br/>"), plotOutput("pop_loc")),
+  tabPanel("Population in each city",HTML("<br/> Population in each city. <br/> <br/>"), DTOutput("myTable"),plotOutput("pop_loc")),
   tabPanel("Language", HTML("The official and national language is Dhivehi, an Indo-Aryan language closely related to the Sinhala language of Sri Lanka. The first known script used to write Dhivehi is the eveyla akuru script, which is found in the historical recording of kings (raadhavalhi). Later a script called dhives akuru was used for a long period. The present-day script is called Thaana and is written from right to left. Thaana is said to have been introduced by the reign of Mohamed Thakurufaanu. <br/> <br/>
 
 English is widely spoken by the locals of the Maldives: 'Following the nation's opening to the outside world, the introduction of English as a medium of instruction at the secondary and tertiary levels of education, and its government's recognition of the opportunities offered through tourism, English has now firmly established itself in the country. As such, the Maldives are quite similar to the countries in the Gulf region .... The nation is undergoing vast societal change, and English is part of this.'<br/>"),
